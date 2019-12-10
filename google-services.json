@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "438926211757",
+    "firebase_url": "https://tyred-a7f51.firebaseio.com",
+    "project_id": "tyred-a7f51",
+    "storage_bucket": "tyred-a7f51.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438926211757:android:61d713905b8353a1f12424",
+        "android_client_info": {
+          "package_name": "com.tyred"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438926211757-8vf2f1img3oiib2gojk3l1611ijsn078.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBe-Twyk2Am6gvrtqIAgM_YAI227im8P24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438926211757-8vf2f1img3oiib2gojk3l1611ijsn078.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
