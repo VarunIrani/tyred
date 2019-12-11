@@ -7,13 +7,12 @@ class Authentication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomPadding: true,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.only(top: 28),
-            color: Colors.white,
             child: Row(
               children: <Widget>[
                 Image.asset(
