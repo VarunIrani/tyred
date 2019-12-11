@@ -159,29 +159,39 @@ class _SignUpState extends State<SignUp> {
                 elevation: 5,
                 shape: StadiumBorder(),
                 fillColor: Color(0xff37474F),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(top: 16, bottom: 16, left: 160),
-                      child: Text(
-                        'SIGN UP',
-                        style: TextStyle(
-                          fontFamily: 'Roboto',
-                          fontSize: 15,
-                          color: Colors.white,
+                child: Stack(
+                  children: [
+                    Row(
+                      children: <Widget>[
+                        Expanded(
+                          child: Container(
+                            padding: EdgeInsets.only(top: 16, bottom: 16),
+                            child: Center(
+                              child: Text(
+                                'SIGN UP',
+                                style: TextStyle(
+                                  fontFamily: 'Roboto',
+                                  fontSize: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: IconButton(
+                        onPressed: null,
+                        color: Color(0xffFFE082),
+                        icon: Icon(
+                          FontAwesomeIcons.chevronRight,
+                          color: Color(0xffFFE082),
+                          size: 18,
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: null,
-                      color: Color(0xffFFE082),
-                      icon: Icon(
-                        FontAwesomeIcons.chevronRight,
-                        color: Color(0xffFFE082),
-                        size: 18,
-                      ),
-                    )
                   ],
                 ),
                 onPressed: () {
