@@ -80,6 +80,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                                 padding: const EdgeInsets.only(
                                     left: 20.0, top: 12, bottom: 12),
                                 child: FormBuilderTextField(
+                                  onChanged: (value) =>
+                                      _formKey.currentState.validate(),
                                   style: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontSize: 16,

@@ -63,6 +63,8 @@ class _LoginState extends State<Login> {
                                 padding: const EdgeInsets.only(
                                     left: 20.0, top: 12, bottom: 12),
                                 child: FormBuilderTextField(
+                                  onChanged: (value) =>
+                                      _formKey.currentState.validate(),
                                   style: TextStyle(
                                     fontFamily: 'Roboto',
                                     fontSize: 16,
@@ -88,6 +90,8 @@ class _LoginState extends State<Login> {
                               Padding(
                                 padding: const EdgeInsets.only(left: 16.0),
                                 child: FormBuilderTextField(
+                                  onChanged: (value) =>
+                                      _formKey.currentState.validate(),
                                   obscureText: true,
                                   maxLines: 1,
                                   style: TextStyle(
