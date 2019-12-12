@@ -12,6 +12,8 @@ dependencies:
   flutter_form_builder:
   font_awesome_flutter:
   outline_material_icons:
+  flutter_money_formatter:
+  flutter_rating_bar:
 
   cupertino_icons: ^0.1.2
 
