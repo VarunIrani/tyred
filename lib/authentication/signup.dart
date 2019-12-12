@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:outline_material_icons/outline_material_icons.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({
@@ -90,7 +91,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    left: 20.0, bottom: 12),
+                                    left: 16.0, bottom: 12),
                                 child: FormBuilderTextField(
                                   style: TextStyle(
                                     fontFamily: 'Roboto',
@@ -109,7 +110,10 @@ class _SignUpState extends State<SignUp> {
                                       fontSize: 16,
                                       letterSpacing: 1.5,
                                     ),
-                                    icon: Icon(FontAwesomeIcons.user),
+                                    icon: Icon(
+                                      OMIcons.person,
+                                      size: 28,
+                                    ),
                                   ),
                                   validators: [
                                     FormBuilderValidators.required(),

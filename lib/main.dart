@@ -4,6 +4,7 @@ import 'package:splashscreen/splashscreen.dart';
 import 'package:Tyred/authentication/authentication.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   // Enable Full Screen viewing
   SystemChrome.setEnabledSystemUIOverlays([]);
   runApp(
