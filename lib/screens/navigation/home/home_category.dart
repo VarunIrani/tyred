@@ -6,65 +6,68 @@ class HomeCategory extends StatelessWidget {
   final double size;
   final String label;
   final Function() onPressed;
+  final Widget child;
   const HomeCategory({
     Key key,
     this.size,
-    @required this.color,
-    @required this.iconColor,
-    @required this.icon,
+    this.color,
+    this.iconColor,
+    this.icon,
     @required this.label,
     @required this.onPressed,
+    this.child,
   })  : assert(
-          color != null && icon != null && iconColor != null && label != null,
+          label != null,
           onPressed != null,
         ),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              RawMaterialButton(
-                padding: EdgeInsets.all(40.0),
-                fillColor: this.color,
-                elevation: 0,
-                shape: CircleBorder(),
-                highlightElevation: 0,
-                onPressed: null,
-                child: Center(),
+    return Column(
+      children: <Widget>[
+        Stack(
+          children: <Widget>[
+            RawMaterialButton(
+              padding: EdgeInsets.all(35.0),
+              fillColor: this.color,
+              shape: CircleBorder(),
+              onPressed: null,
+              child: Center(),
+            ),
+            RawMaterialButton(
+              onPressed: onPressed,
+              shape: child == null ? CircleBorder() : StadiumBorder(),
+              child: Container(
+                height: 70,
+                alignment: Alignment.center,
+                child: child == null
+                    ? Icon(
+                        icon,
+                        size: size,
+                        color: iconColor,
+                      )
+                    : Padding(
+                        child: child,
+                        padding: EdgeInsets.all(0),
+                      ),
               ),
-              RawMaterialButton(
-                onPressed: onPressed,
-                shape: CircleBorder(),
-                child: Container(
-                  height: 75,
-                  alignment: Alignment.center,
-                  child: Icon(
-                    icon,
-                    size: size,
-                    color: iconColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: Center(
-              child: Text(
-                this.label,
-                style: TextStyle(
-                  fontFamily: 'Roboto',
-                  fontSize: 16,
-                ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Center(
+            child: Text(
+              this.label,
+              style: TextStyle(
+                fontFamily: 'Roboto',
+                fontSize: 16,
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
