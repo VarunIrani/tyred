@@ -17,12 +17,7 @@ class Brands extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(
-        top: 12,
-        bottom: 12,
-      ),
       height: MediaQuery.of(context).size.height * .5,
-      // color: Colors.red,
       child: GridView.count(
         crossAxisCount: 2,
         crossAxisSpacing: 12,

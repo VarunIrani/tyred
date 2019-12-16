@@ -1,7 +1,11 @@
+import 'package:Tyred/screens/root.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:outline_material_icons/outline_material_icons.dart';
+import 'dart:async';
 
 class SignUp extends StatefulWidget {
   const SignUp({
@@ -14,7 +18,6 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormBuilderState>();
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -64,6 +67,7 @@ class _SignUpState extends State<SignUp> {
                                 padding: const EdgeInsets.only(
                                     left: 20.0, top: 12, bottom: 12),
                                 child: FormBuilderTextField(
+                                  keyboardType: TextInputType.emailAddress,
                                   onChanged: (value) =>
                                       _formKey.currentState.validate(),
                                   style: TextStyle(
@@ -149,7 +153,11 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   validators: [
                                     FormBuilderValidators.required(),
-                                    FormBuilderValidators.minLength(7),
+                                    FormBuilderValidators.pattern(
+                                      '^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@\$!%*#?&])[A-Za-z\\d@\$!%*#?&]{8,}\$',
+                                      errorText:
+                                          'Minimum eight characters, at least one letter,\none number and one special character\n',
+                                    ),
                                   ],
                                 ),
                               ),
@@ -207,7 +215,57 @@ class _SignUpState extends State<SignUp> {
                   ),
                   onPressed: () {
                     if (_formKey.currentState.saveAndValidate()) {
-                      print(_formKey.currentState.value);
+                      showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return FutureBuilder(
+                              future: _handleSignIn(),
+                              builder: (context, snapshot) {
+                                if (snapshot.connectionState !=
+                                    ConnectionState.done) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Working on it...',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto Mono',
+                                      ),
+                                    ),
+                                    content: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.10,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Welcome',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto Mono',
+                                      ),
+                                    ),
+                                    content: Text('Registered Successfully'),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                          child: Text('CLOSE'),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) => Root(),
+                                                ));
+                                          }),
+                                    ],
+                                  );
+                                }
+                              },
+                            );
+                          });
                     }
                   },
                 ),
@@ -261,5 +319,26 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  Future<FirebaseUser> _handleSignIn() async {
+    String email, username, password;
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    DatabaseReference _database = FirebaseDatabase.instance.reference();
+    email = _formKey.currentState.value['email'];
+    username = _formKey.currentState.value['username'];
+    password = _formKey.currentState.value['password'];
+    FirebaseUser user = (await _auth.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
+    ))
+        .user;
+    Map<String, String> userData = {
+      'email': user.email,
+      'username': username,
+      'uid': user.uid,
+    };
+    _database.child('users/' + userData['uid']).set(userData);
+    return user;
   }
 }

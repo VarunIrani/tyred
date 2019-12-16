@@ -38,6 +38,7 @@ class HomeCategory extends StatelessWidget {
             RawMaterialButton(
               onPressed: onPressed,
               shape: child == null ? CircleBorder() : StadiumBorder(),
+              splashColor: Theme.of(context).colorScheme.secondary,
               child: Container(
                 height: 70,
                 alignment: Alignment.center,
@@ -47,10 +48,7 @@ class HomeCategory extends StatelessWidget {
                         size: size,
                         color: iconColor,
                       )
-                    : Padding(
-                        child: child,
-                        padding: EdgeInsets.all(0),
-                      ),
+                    : child,
               ),
             ),
           ],

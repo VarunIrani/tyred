@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -71,12 +72,12 @@ class _LoginState extends State<Login> {
                                     fontFamily: 'Roboto',
                                     fontSize: 16,
                                   ),
-                                  attribute: "username_email",
+                                  attribute: "email",
                                   maxLines: 1,
                                   decoration: InputDecoration(
                                     focusColor: Color(0xffcaae53),
                                     border: InputBorder.none,
-                                    labelText: 'USERNAME / EMAIL',
+                                    labelText: 'EMAIL',
                                     labelStyle: TextStyle(
                                       fontFamily: 'Roboto Mono',
                                       fontSize: 16,
@@ -89,6 +90,7 @@ class _LoginState extends State<Login> {
                                   ),
                                   validators: [
                                     FormBuilderValidators.required(),
+                                    FormBuilderValidators.email(),
                                   ],
                                 ),
                               ),
@@ -176,20 +178,57 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Root(),
-                      ),
-                    );
                     if (_formKey.currentState.saveAndValidate()) {
-                      print(_formKey.currentState.value);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => Home(),
-                      //   ),
-                      // );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return FutureBuilder(
+                              future: _handleLogin(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshot) {
+                                if (!snapshot.hasData) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      'Working on it...',
+                                      style: TextStyle(
+                                        fontFamily: 'Roboto Mono',
+                                      ),
+                                    ),
+                                    content: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.10,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ),
+                                    ),
+                                  );
+                                } else {
+                                  if (snapshot.hasError) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        'Whoops!',
+                                        style: TextStyle(
+                                          fontFamily: 'Roboto Mono',
+                                        ),
+                                      ),
+                                      actions: <Widget>[
+                                        FlatButton(
+                                          child: Text('CLOSE'),
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                        )
+                                      ],
+                                      content: Container(
+                                        child: Text('Invalid Credentials.'),
+                                      ),
+                                    );
+                                  } else
+                                    return Root();
+                                }
+                              },
+                            );
+                          });
                     }
                   },
                 ),
@@ -232,5 +271,17 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  Future<AuthResult> _handleLogin() async {
+    String email, password;
+    FirebaseAuth _auth = FirebaseAuth.instance;
+    email = _formKey.currentState.value['email'];
+    password = _formKey.currentState.value['password'];
+    AuthResult result = await _auth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
+    return result;
   }
 }
