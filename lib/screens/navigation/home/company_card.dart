@@ -17,7 +17,7 @@ class CompanyCard extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 18,
         right: 18,
-        bottom: MediaQuery.of(context).size.height * .04,
+        bottom: MediaQuery.of(context).size.height * .03,
         top: 18,
       ),
       width: MediaQuery.of(context).size.width,
@@ -56,48 +56,43 @@ class CompanyCard extends StatelessWidget {
                     right: 12.0,
                     bottom: 12.0,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 180,
-                    ),
-                    child: Container(
-                      width: 110,
-                      height: 50,
-                      child: RawMaterialButton(
-                        elevation: 5,
-                        shape: StadiumBorder(),
-                        fillColor: Theme.of(context).colorScheme.primary,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            Container(
-                              padding: EdgeInsets.only(
-                                top: 16,
-                                bottom: 16,
-                              ),
-                              child: Text(
-                                'MORE',
-                                style: TextStyle(
-                                  fontFamily: 'Roboto',
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
-                                ),
+                  child: Container(
+                    width: 110,
+                    height: 50,
+                    child: RawMaterialButton(
+                      elevation: 5,
+                      shape: StadiumBorder(),
+                      fillColor: Theme.of(context).colorScheme.primary,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.only(
+                              top: 16,
+                              bottom: 16,
+                            ),
+                            child: Text(
+                              'MORE',
+                              style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
                               ),
                             ),
-                            IconButton(
-                              onPressed: null,
-                              color: Color(0xffFFE082),
-                              icon: Icon(
-                                FontAwesomeIcons.chevronRight,
-                                color: Theme.of(context).colorScheme.secondary,
-                                size: 18,
-                              ),
+                          ),
+                          IconButton(
+                            onPressed: null,
+                            color: Color(0xffFFE082),
+                            icon: Icon(
+                              FontAwesomeIcons.chevronRight,
+                              color: Theme.of(context).colorScheme.secondary,
+                              size: 18,
                             ),
-                          ],
-                        ),
-                        onPressed: () => this._handleNavigation(index),
+                          ),
+                        ],
                       ),
+                      onPressed: () => this._handleNavigation(index),
                     ),
                   ),
                 ),

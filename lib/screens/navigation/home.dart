@@ -9,38 +9,54 @@ import 'home/tyre_card.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var latest = Container(
+      width: double.infinity,
+      padding: EdgeInsets.only(
+        left: 18.0,
+      ),
+      child: Text(
+        'Latest In Brands',
+        style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Roboto Mono',
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+    var categories = Container(
+      width: double.infinity,
+      padding: EdgeInsets.only(left: 18.0, top: 32.0),
+      child: Text(
+        'Categories',
+        style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Roboto Mono',
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+    var recommended = Container(
+      width: double.infinity,
+      padding: EdgeInsets.only(
+        left: 18.0,
+      ),
+      child: Text(
+        'Recommended',
+        style: TextStyle(
+          fontSize: 30,
+          fontFamily: 'Roboto Mono',
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
     return SingleChildScrollView(
       child: Container(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(left: 18.0, top: 32.0),
-              child: Text(
-                'Categories',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Roboto Mono',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            categories,
             HomeCategories(),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(
-                left: 18.0,
-              ),
-              child: Text(
-                'Latest In Brands',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Roboto Mono',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            latest,
             Container(
               height: MediaQuery.of(context).size.height * .42,
               child: ListView.builder(
@@ -54,20 +70,7 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
-            Container(
-              width: double.infinity,
-              padding: EdgeInsets.only(
-                left: 18.0,
-              ),
-              child: Text(
-                'Recommended',
-                style: TextStyle(
-                  fontSize: 30,
-                  fontFamily: 'Roboto Mono',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            recommended,
             Container(
               height: MediaQuery.of(context).size.height * .42,
               child: ListView.builder(

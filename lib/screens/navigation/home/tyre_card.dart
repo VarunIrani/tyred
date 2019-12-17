@@ -28,7 +28,7 @@ class TyreCard extends StatelessWidget {
       padding: EdgeInsets.only(
         left: 18,
         right: 18,
-        bottom: MediaQuery.of(context).size.height * .03,
+        bottom: MediaQuery.of(context).size.height * .02,
         top: 18,
       ),
       width: MediaQuery.of(context).size.width * 0.50,
@@ -101,23 +101,25 @@ class TyreCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  alignment: Alignment.center,
-                  child: RatingBar(
-                    itemSize: 22,
-                    ignoreGestures: true,
-                    initialRating: this.rating.toDouble(),
-                    direction: Axis.horizontal,
-                    allowHalfRating: false,
-                    itemCount: 5,
-                    itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                    itemBuilder: (context, _) => Icon(
-                      Icons.star,
-                      color: Colors.amber,
+                Expanded(
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: RatingBar(
+                      itemSize: 22,
+                      ignoreGestures: true,
+                      initialRating: this.rating.toDouble(),
+                      direction: Axis.horizontal,
+                      allowHalfRating: false,
+                      itemCount: 5,
+                      itemPadding: EdgeInsets.symmetric(horizontal: 1.0),
+                      itemBuilder: (context, _) => Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      onRatingUpdate: (rating) {
+                        print(rating);
+                      },
                     ),
-                    onRatingUpdate: (rating) {
-                      print(rating);
-                    },
                   ),
                 ),
               ],

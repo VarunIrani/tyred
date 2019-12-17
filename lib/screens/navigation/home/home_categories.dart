@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'home_category.dart';
 import 'see_all_categories.dart';
+import 'package:Tyred/screens/categories.dart';
 
 class HomeCategories extends StatelessWidget {
   const HomeCategories({
@@ -12,7 +13,8 @@ class HomeCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-        padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+        padding:
+            const EdgeInsets.only(top: 16.0, bottom: 16.0, left: 0, right: 0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
@@ -23,28 +25,25 @@ class HomeCategories extends StatelessWidget {
                   icon: FontAwesomeIcons.car,
                   color: Theme.of(context).colorScheme.secondaryVariant,
                   iconColor: Colors.white,
-                  size: 42,
+                  size: 35,
                   label: 'Car',
                   onPressed: () {},
                 ),
                 HomeCategory(
-                  icon: FontAwesomeIcons.truck,
+                  icon: FontAwesomeIcons.motorcycle,
                   color: Theme.of(context).colorScheme.secondaryVariant,
                   iconColor: Colors.white,
-                  size: 42,
+                  size: 35,
                   onPressed: () {},
-                  label: 'Truck',
-                ),
-                HomeCategory(
-                  icon: FontAwesomeIcons.bus,
-                  color: Theme.of(context).colorScheme.secondaryVariant,
-                  iconColor: Colors.white,
-                  size: 42,
-                  onPressed: () {},
-                  label: 'Bus',
+                  label: 'Bike',
                 ),
                 SeeAllCategories(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Categories(),
+                    ),
+                  ),
                 ),
               ],
             ),
